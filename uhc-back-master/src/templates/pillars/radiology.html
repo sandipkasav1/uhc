@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" class="w-min-content md:w-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radiology | UHCS</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* smooth fade transition */
+      .slide {
+        @apply absolute inset-0 transition-opacity duration-500;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 abt-uspage flex flex-col w-min-content items-center w-min-content md:w-full h-min-content"
+  >
+    {% include "nav.html" %}
+
+    <!-- Hero Section -->
+    <section
+      class="grad shadow-lg relative flex flex-col items-center justify-between h-[32rem] w-[90%] text-white rounded-[2rem] px-10 pb-10 mt-4 mx-6"
+    >
+      <div class="w-full">
+        <div class="flex flex-col w-full items-center text-center relative">
+          <!-- Title -->
+          <div class="flex flex-col items-center w-full">
+            <h1 class="md:text-[9rem] mb-24 text-[2rem] w-3/4 font-extrabold">
+              Radiology
+            </h1>
+            <div
+              class="md:text-[5rem] gap-32 text-[2rem] w-1/3 md:w-2/5 font-extrabold flex justify-between"
+            >
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Image -->
+      <div class="absolute bottom-0">
+        <img
+          src="/static/images/clients.png"
+          alt="Doctor"
+          class="h-[15rem] md:h-[25rem] w-auto object-cover rounded-lg"
+        />
+      </div>
+
+      <!-- Glassmorph Text Panel -->
+      <div class="relative z-10 px-4 md:px-0">
+        <div class="mx-auto max-w-3xl relative">
+          <!-- Frosted glass base -->
+          <div class="absolute inset-0 rounded-lg backdrop-blur-lg"></div>
+          <!-- Gradient fade overlay -->
+          <div
+            class="absolute inset-0 rounded-lg bg-gradient-to-r from-black/0 via-black/30 to-black/0"
+          ></div>
+          <!-- Actual text -->
+          <p
+            class="relative p-6 text-center text-base md:text-lg font-medium leading-relaxed"
+          >
+            We’re here to support your healthcare staffing journey—whether
+            you're a facility looking for top-tier talent or a clinician seeking
+            the right opportunity. Reach out to our team for fast, responsive,
+            and personalized assistance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Listings Section -->
+    <div
+      class="w-11/12 max-h-[60vh] flex flex-col-reverse flex-col items-center md:flex-row md:flex md:justify-between md:items-start mt-16 ml-8"
+    >
+      <div class="w-5/6 md:w-1/3 h-full overflow-scroll flex flex-col">
+        {% if jobs == [] %}
+          <div class="flex items-center justify-center w-full h-64">
+            <p class="text-gray-500 text-lg">No jobs available at the moment.</p>
+          </div>
+        {% endif %}
+        {% for job in jobs %}
+        <!-- Job Card -->
+        <a href="jobs?job_code={{ job['job_code'] }}">
+          <div
+            class="my-4 relative max-w-lg w-full rounded-tl-[2rem] rounded-br-[2rem] overflow-hidden border-[1.19px] border-[#1797C5]"
+          >
+            <!-- Gradient background -->
+            <div class="p-6 bg-gradient-to-b from-[#E0FFFB] to-[#FFFFFF]">
+              <!-- Job ID Badge -->
+              <div
+                class="absolute top-7 right-4 bg-[#10217D] text-white text-xs font-medium px-2 py-1 rounded"
+              >
+                {{ job["job_code"] }}
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-2xl w-3/4 font-semibold text-[#1797C5] mb-4">
+                {{ job["job_title"] }}
+              </h2>
+
+              <!-- Location & (optional) Remote/Rate Badges -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="bg-[#09578C] text-white text-sm font-medium px-3 py-1 rounded"
+                >
+                  {{ job["city"] }}, {{ job["country"] }}
+                </span>
+
+                {% if job["is_remote_job"] %}
+                <span
+                  class="bg-[#09578C] text-white text-sm font-medium px-3 py-1 rounded"
+                >
+                  Remote
+                </span>
+                {% endif %} {% if job["rate"] %}
+                <span
+                  class="bg-[#1797C5] text-white text-sm font-medium px-3 py-1 rounded"
+                >
+                  {{ job["rate"] }}
+                </span>
+                {% endif %}
+              </div>
+
+              <!-- Description -->
+              <p class="text-gray-700 leading-relaxed"></p>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div>
+
+      <div
+        class="w-full h-full items-center justify-center md:w-2/3 px-6 flex flex-col"
+      >
+        <!-- Trigger Button -->
+        <div
+          class="relative w-[90%] h-[90%] overflow-hidden rounded-2xl rounded-br-[5rem] rounded-tl-[5rem] shadow-lg"
+        >
+          <div class="slide visible flex flex-col gap-4 rounded-br-[5rem]">
+            <img
+              src="/static/images/client-photo.jpg"
+              alt="Slide 1"
+              class="w-full h-full object-cover row-span-3"
+            />
+            <div class="absolute bottom-8 bg-white/30 w-[95%] left-[2.5%] backdrop-blur-lg rounded-2xl rounded-br-[5rem] p-6">
+              <p class="text-[#1E1E1E] text-base leading-relaxed">
+                “I’ve worked with a few staffing agencies over the years, but
+                none have come close to UHC. They genuinely care about your
+                career goals and take the time to find opportunities that align
+                with your values. I was placed in a role where I feel fulfilled
+                every day.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="max-w-7xl mx-auto mt-24 px-4">
+      <h2 class="text-2xl font-semibold mt-24 mb-6">
+        Browse Our Radiology Roles
+      </h2>
+      <div class="relative">
+        <!-- Scroll Container -->
+        <div
+          id="rolesContainer"
+          class="flex space-x-6 overflow-x-auto scroll-smooth pb-4"
+        >
+          {% for role in roles %}
+          <div
+            class="flex-none bg-gradient-to-b from-[#E0FFFB] to-[#FFFFFF] h-96 w-80 rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div class="overflow-scroll h-full space-y-4">
+              <!-- Title -->
+              <div
+                class="p-6 text-xl h-[30%] border w-full font-bold text-gray-800"
+              >
+                <h3>{{ role.title }}</h3>
+              </div>
+
+              <!-- Qualifications -->
+              <div class="p-6">
+                <h4 class="text-md font-semibold text-gray-700">
+                  Qualifications
+                </h4>
+                <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+                  {% for qual in role.qualifications %}
+                  <li>{{ qual }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+              <!-- Certifications -->
+              <div class="p-6">
+                <h4 class="text-md font-semibold text-gray-700">
+                  Certifications
+                </h4>
+                <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+                  {% for cert in role.certifications %}
+                  <li>{{ cert }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Prev Button -->
+        <button
+          onclick="scrollRoles(-1)"
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none"
+          aria-label="Scroll left"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        <!-- Next Button -->
+        <button
+          onclick="scrollRoles(1)"
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none"
+          aria-label="Scroll right"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 px-4 mt-24 md:px-8 lg:px-16">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Our Story -->
+        <div
+          class="relative text-[#B40471] overflow-hidden bg-gradient-to-br from-teal-100 to-white rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg p-8"
+        >
+          <h3 class="text-3xl font-semibold mb-4 text-[#0D5C91]">
+            Radiology
+          </h3>
+          <p class="leading-loose tracking-wide text-sm">
+            At UHC Staffing, we specialize in placing skilled nurses across all clinical settings — from critical care and emergency departments to med-surg and long-term care. Our credentialing process is Joint Commission-aligned, ensuring every RN, LPN, and LVN meets strict licensure, training, and facility-specific EMR requirements. We support hospitals, outpatient centers, and skilled Radiology facilities in maintaining safe staffing ratios, boosting patient satisfaction, and minimizing burnout through timely, compliant placements.
+          </p>
+        </div>
+
+        <!-- Image 1 -->
+        <div class="overflow-hidden rounded-bl-[5rem] rounded-xl shadow-lg">
+          <img
+            src="static/images/about/about-1.jpg"
+            alt="Team meeting"
+            class="h-full w-auto object-cover"
+          />
+        </div>
+
+        <!-- Image 2 (now naturally left on md+) -->
+        <div class="overflow-hidden rounded-tr-[5rem] rounded-xl shadow-lg">
+          <img
+            src="static/images/about/about-2.jpg"
+            alt="Group of professionals"
+            class="w-full h-auto object-cover"
+          />
+        </div>
+
+        <!-- Our Mission (naturally right on md+) -->
+        <div
+          class="relative overflow-hidden bg-gradient-to-br from-purple-100 to-white rounded-br-[5rem] rounded-tr-[5rem] shadow-lg p-8"
+        >
+          <h3 class="text-3xl font-semibold text-[#0D5C91] mb-4">
+            Benefits
+          </h3>
+          <p class="text-[#720AC8] text-sm leading-relaxed">
+            Our radiology professionals receive tailored support that reflects the complexity of their work. We offer top-tier pay, continuing education guidance, credentialing assistance, and flexible placement options across all modalities. Whether you're seeking per diem or long-term roles, we help you stay compliant, confident, and focused — so you can deliver clarity when it matters most.
+
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {% include "faq.html" %}
+
+    {% include "footer.html" %}
+
+    <script>
+      function scrollRoles(direction) {
+        const container = document.getElementById("rolesContainer");
+        const scrollAmount = container.clientWidth * 0.8; // scroll by 80% of visible width
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </body>
+</html>
