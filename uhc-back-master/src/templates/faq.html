@@ -1,0 +1,94 @@
+{% if faqs is defined %}
+<!-- FAQ Accordions -->
+<div class="w-full relative">
+  <svg
+    class="hidden lg:block absolute top-0 right-0 h-full w-1/2 text-blue-50 fill-current"
+    viewBox="0 0 600 800"
+    preserveAspectRatio="none"
+  >
+    <path
+      d="
+    M 0,800 
+    C 200,600 400,100 600,0 
+    L 600,800 
+    Z
+  "
+    />
+  </svg>
+  <section class="py-16 px-4 md:px-8 relative lg:px-16 max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-4xl text-[#0D5C91] font-bold">Got Questions?</p>
+      <h2 class="mt-2 text-3xl md:text-xl font-medium text-gray-900">
+        We’ve got you!
+      </h2>
+    </div>
+
+    <!-- FAQ List -->
+    <div class="space-y-4">
+      {% for faq in faqs %}
+      <div class="faq-item">
+        <button
+          class="w-full flex items-center justify-between bg-gradient-to-r from-blue-100 to-blue-50 text-gray-800 font-medium py-4 px-6 rounded-full focus:outline-none faq-toggle"
+        >
+          <span>{{ faq.question }}</span>
+          <svg
+            class="h-6 w-6 text-gray-500 transform transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+        <div
+          class="faq-content max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out px-6 text-gray-700"
+        >
+          <p class="py-4">{{ faq.answer }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- check outmore FAQs on our faq page -->
+    <div class="text-center mt-8">
+      <a
+        href="/faqs"
+        class="inline-flex items-center px-5 py-2 bg-[#0D5C91] text-white font-medium rounded-full hover:bg-blue-700 transition"
+      >
+        View More FAQs
+        <span class="ml-4"
+          ><img src="/static/images/about/btn-arrow.png" alt="Arrow Icon"
+        /></span>
+      </a>
+    </div>
+  </section>
+</div>
+
+
+   <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-toggle");
+        const content = item.querySelector(".faq-content");
+        const icon = btn.querySelector("svg");
+
+        btn.addEventListener("click", () => {
+          // Toggle open class
+          const isOpen =
+            content.style.maxHeight && content.style.maxHeight !== "0px";
+          if (isOpen) {
+            content.style.maxHeight = "0";
+            icon.classList.remove("rotate-90");
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.classList.add("rotate-90");
+          }
+        });
+      });
+    </script>
+{% endif %}

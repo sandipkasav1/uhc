@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en" class="w-min-content md:w-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+
+  <body
+    class="urbanist-main w-min-content md:w-full flex flex-col items-center bg-gray-50 h-min-content"
+  >
+    {% include "nav.html" %}
+
+    <!-- Hero Section -->
+    <section
+      class="bg-[#0D5C91] shadow-2xl boxshadow shadow-gray-500 relative flex flex-col items-center justify-between h-[27rem] md:h-[32rem] w-[90%] 
+      text-white rounded-[2rem] px-10 pb-10 mt-4 mx-6
+      grad"
+    >
+    <svg class="absolute bottom-0 opacity-10 rounded-3xl"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ADD8E6" fill-opacity="1" d="M0,96L40,117.3C80,139,160,181,240,170.7C320,160,400,96,480,101.3C560,107,640,181,720,192C800,203,880,149,960,138.7C1040,128,1120,160,1200,160C1280,160,1360,128,1400,112L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+      <div class="w-full h-[32rem]">
+        <div class="flex flex-col w-full items-center text-center relative">
+          <!-- Title -->
+          <div class="flex flex-col md:items-center w-full">
+            <h1 class="md:text-[12rem] leading-[12rem] mb-24 text-[3.5rem] w-3/4 font-extrabold">
+              Healthcare
+            </h1>
+            <div
+              class="md:text-[5rem] gap-32 text-[2rem] w-1/3 md:w-2/5 font-extrabold flex justify-between"
+            >
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Image -->
+      <div class="absolute bottom-0">
+        <img
+          src="static/images/home/doctor.png"
+          alt="Doctor"
+          class="h-[24rem] md:h-[25rem] w-auto object-cover rounded-lg"
+        />
+      </div>
+
+      <!-- Search Bar -->
+      {% include "search_bar.html" %}
+    </section>
+
+    <!-- Trending Jobs  -->
+    <section class="py-12 mt-24 px-6 relative">
+      <!-- Title -->
+      <h2 class="text-5xl font-extrabold text-[#252B61] text-center mb-10">
+        Let's find a role that fits you 
+      </h2>
+
+      <div class="flex items-center justify-center md:max-w-6xl relative">
+        <!-- Left Arrow -->
+        <div class="absolute -left-6 z-10">
+          <button
+            onclick="leftScroll()"
+            class="bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-[#1A1A4B]"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12.293 15.707a1 1 0 01-1.414 0L6.586 11.414a2 2 0 010-2.828l4.293-4.293a1 1 0 011.414 1.414L8.414 10l3.879 3.879a1 1 0 010 1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Right Arrow -->
+        <div class="absolute -right-8 z-10">
+          <button
+            onclick="scrollRight()"
+            class="bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-[#1A1A4B]"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7.707 4.293a1 1 0 010 1.414L11.586 10 7.707 13.879a1 1 0 001.414 1.414l5-5a1 1 0 000-1.414l-5-5a1 1 0 00-1.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Cards Container -->
+        <div
+          id="cardContainer"
+          class="flex overflow-x-scroll w-[80vw] scrollbar-hide scroll-smooth"
+        >
+        {% if jobs == [] %}
+          <div class="flex items-center justify-center w-full h-64">
+            <p class="text-gray-500 text-lg">No jobs available at the moment.</p>
+          </div>
+        {% endif %}
+          {% for job in jobs %}
+
+          <a href="/jobs?job_code={{ job['job_code'] }}">
+            <div
+              class="flex glassmorph shadow-lg shadow-gray-500 rounded-br-[3rem] rounded-tl-[3rem] flex-col justify-between border border-[#E0FFFB] bg-gradient-to-b from-[#E0FFFB] h-[20rem] to-white w-64 mr-6 mb-6 p-5 rounded-xl shrink-0"
+            >
+              <div class="grid grid-rows-4 h-48 items-center space-x-2 mb-4">
+                <div class="bg-blue-100 w-min px-2 py-1 rounded-full">
+                  <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <h3
+                  class="font-semibold grid-span-2 text-[#1A1A1A] text-xl leading-tight mb-2"
+                >
+                  {{ job["job_title"] }}
+                </h3>
+                <hr class="my-2 border-gray-300" />
+                <div class="flex flex-col items-start justify-start w-full h-full space-y-2 mt-3">
+                  <span
+                    class="bg-[#0D5C91] text-white text-sm px-3 py-1 rounded-md w-fit"
+                    >{{ job["city"] }}, {{ job["country"] }}</span
+                  >
+                  {% if job["candidate_pay_rate"] %}
+                  <span
+                    class="bg-[#0D5C91] text-white text-sm px-3 py-1 rounded-md w-fit"
+                    >{{ job["candidate_pay_rate"] }} {{ job["candidate_pay_rate_currency"] }}</span
+                  >
+                  {% endif %}
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <a href="/jobs?job_code={{job["job_code"]}}" class="text-[#0D5C91] font-semibold hover:underline"
+                  >View Details
+                </a>
+              </div>
+            </div>
+          </a>
+
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full -z-20 overlow-clip relative">
+      <svg class="absolute bottom-0 opacity-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2b86c2" fill-opacity="1" d="M0,192L34.3,192C68.6,192,137,192,206,192C274.3,192,343,192,411,170.7C480,149,549,107,617,106.7C685.7,107,754,149,823,186.7C891.4,224,960,256,1029,245.3C1097.1,235,1166,181,1234,133.3C1302.9,85,1371,43,1406,21.3L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+      <svg class="absolute transform rotate-y-180 top-0 opacity-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2b86c2" fill-opacity="1" d="M0,160L60,149.3C120,139,240,117,360,112C480,107,600,117,720,112C840,107,960,85,1080,112C1200,139,1320,213,1380,250.7L1440,288L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+    </div>
+
+    <section class="py-12 mb-24 mt-16 px-4 max-w-7xl mx-auto">
+      <!-- Section Title -->
+      <h2 class="text-5xl text-[#252B61] font-extrabold text-center mb-[5rem]">
+        The Pillars of Staffing
+        <p class="text-xl font-medium mt-2">
+          We don’t just fill jobs. We build careers that fit your purpose.
+        </p>
+      </h2>
+
+      <!-- Responsive Grid -->
+      <div class="max-w-7xl text-gray-200 mx-auto px-4">
+        <!-- Mobile: 1–3 cols, Desktop: fixed 5‑col × 2‑row -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:h-[600px] lg:grid-cols-5 lg:grid-rows-2 gap-6"
+        >
+          <!-- Left top -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-1 lg:row-start-1"
+          >
+            <img src="static/images/home/allied.jpg" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">Allied Health</h3>
+              <p class="mb-4 mt-2">
+                Behind every recovery is your precision — we place you where
+                your technical skills are truly valued.
+              </p>
+            </div>
+            <a href="/pillars/allied" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+
+          <!-- Left bottom -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-1 lg:row-start-2"
+          >
+            <img src="static/images/home/radiology.jpg" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">Radiology</h3>
+              <p class="text-sm mt-2">
+                Your work powers every diagnosis. We place lab professionals in
+                roles where accuracy meets efficiency, every shift.
+              </p>
+            </div>
+            <a href="/pillars/radiology" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+
+          <!-- Big central “Nursing” card -->
+          <div
+            class="relative bg-black rounded-tl-3xl rounded-br-3xl p-8 shadow-lg flex flex-col justify-between lg:col-start-2 lg:col-span-2 lg:row-start-1 lg:row-span-2"
+          >
+            <img src="static/images/home/nursing.png" alt="Nursing" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+            <div class="z-10">
+              <h2 class="text-4xl font-bold mb-4">Nursing</h2>
+              <p class="text-lg mb-6">
+                From med-surg units to critical care and ICU, we place qualified nurses in roles that match their clinical skills, licensure, and career goals.
+              </p>
+            </div>
+            <a href="/pillars/nursing" class="z-10">
+              <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+              >
+              Read More
+            </button>
+          </a>
+          </div>
+
+          <!-- Right top‑left -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-4 lg:row-start-1"
+          >
+            <img src="static/images/home/mental.png" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">
+                Behavioral & <br />
+                Mental Health
+              </h3>
+              <p class="text-sm mt-2">
+                You support mental health with heart and science. We place you
+                where your care changes lives daily.
+              </p>
+            </div>
+            <a href="/pillars/mental" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+
+          <!-- Right top‑right -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-5 lg:row-start-1"
+          >
+            <img src="static/images/home/pharmacy.jpg" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">Pharmacy</h3>
+              <p class="text-sm mt-2">
+                Retail or hospital, travel or perm — we connect pharmacy pros to
+                roles built around their goals.
+              </p>
+            </div>
+            <a href="/pillars/pharmacy" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+
+          <!-- Right bottom‑left -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-4 lg:row-start-2"
+          >
+            <img src="static/images/home/gov.png" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">
+                Government & <br />Schools
+              </h3>
+              <p class="text-sm mt-2">
+                Public health, corrections, education — we staff mission-driven
+                spaces where your service makes systemic impact.
+              </p>
+            </div>
+            <a href="/pillars/gov" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+
+          <!-- Right bottom‑right -->
+          <div
+            class="boxshadow shadow-gray-500 relative flex flex-col justify-between bg-black/80 rounded-tl-3xl rounded-br-3xl p-6 shadow-lg lg:col-start-5 lg:row-start-2"
+          >
+            <img src="static/images/home/therapy.jpg" alt="allied" class="opacity-40 absolute top-0 rounded-tl-3xl rounded-br-3xl right-0 h-full w-auto object-cover shadow-lg" />
+            <div class="z-10">
+              <h3 class="font-semibold text-2xl">Therapy (PT, OT, SLP)</h3>
+              <p class="text-sm mt-2">
+                Skilled therapists for IEPs, rehab, and pediatric care across
+                schools, outpatient clinics, and long-term settings.
+              </p>
+            </div>
+            <a href="/pillars/therapy" class="z-10">
+            <button
+              class="z-10 bg-[#0D5C91] px-6 py-2 rounded-full shadow self-start mt-4"
+            >
+              Read More
+            </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full">
+      <!-- About Us -->
+      <section
+        class="relative bg-curve pb-12 pt-24 rounded-t-[50px] w-full bg-sky-100 overflow-hidden"
+      >
+        <!-- Slides wrapper -->
+        <div
+          id="carousel"
+          class="relative h-[45rem] flex md:h-[20rem] mx-auto w-full md:max-w-5xl"
+        >
+          <!-- Slide 1 -->
+          <div
+            class="slide absolute inset-0 gap-4 flex flex-col md:flex-row items-center justify-center opacity-100 transition-opacity duration-500"
+          >
+            <!-- Image -->
+            <div class="w-full md:w-1/2 flex justify-end md:mr-8">
+              <img
+                src="static/images/home/slide1.jpg"
+                alt="Team"
+                class="w-full h-auto boxshadow md:h-[23rem] md:w-[23rem] md:mr-4 object-cover rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <!-- Text -->
+            <div class="w-full md:w-1/2">
+              <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                People-First Staffing,<br />
+                Empowering Healthcare
+              </h3>
+              <p class="text-gray-700 mb-6">
+                We believe great care starts with the right professionals in the
+                right roles. At UHC Staffing, our mission is to connect
+                healthcare professionals with opportunities that honor their
+                time, talent, and heart.
+              </p>
+              <p class="text-gray-900 font-medium mb-8">
+                To place healers where they’re needed most, In roles that value
+                their hands, their hearts, and their humanity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div
+            class="slide absolute inset-0 gap-4 flex flex-col md:flex-row items-center justify-center opacity-100 transition-opacity duration-500"
+          >
+            <div class="w-full md:w-1/2 flex justify-end md:mr-8">
+              <img
+                src="static/images/home/slide2.png"
+                alt="Our Team"
+                class="w-full h-auto boxshadow md:h-[23rem] md:w-[23rem] md:mr-4 object-cover rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <div class="w-full md:w-1/2">
+              <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                The Team Behind Your Team <br/>
+              </h3>
+              <p class="text-gray-700 mb-6">
+                At UHC Staffing, we don’t just place talent — we reinforce
+                clinical teams. From fast ICU coverage to EMR-ready therapists,
+                our placements are credentialed, responsive, and built for
+                impact. We understand healthcare pressure points and match
+                professionals who are ready to step in, adapt quickly, and
+                elevate patient care.
+              </p>
+              <p class="text-gray-900 font-medium mb-8">
+                To be the first choice for dental excellence through innovation
+                and patient-centric approaches.
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div
+            class="slide absolute inset-0 gap-4 flex flex-col md:flex-row items-center justify-center opacity-100 transition-opacity duration-500"
+          >
+            <div class="w-full md:w-1/2 flex justify-end md:mr-8">
+              <img
+                src="static/images/home/slide3.jpg"
+                alt="Care"
+                class="h-full h-auto boxshadow md:h-[23rem] md:w-[23rem] md:mr-4 object-cover rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <div class="w-full md:w-1/2">
+              <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                Powered by Purpose. Driven by People.
+              </h3>
+              <p class="text-gray-700 mb-6">
+                Healthcare doesn't run on algorithms — it runs on people who
+                show up, shift after shift, with skill and heart. At UHC
+                Staffing, we place clinicians where they're not just needed, but
+                set up to succeed.
+              </p>
+              <p class="text-gray-900 font-medium mb-8">
+                Empathy in action. Accountability in every step. We advocate for
+                clinicians, communicate with transparency, and staff with
+                purpose — so that care teams function better, and patients
+                aren't left waiting.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="mt-16 flex justify-center z-10 space-x-4">
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="0"
+          ></button>
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="1"
+          ></button>
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="2"
+          ></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="py-16 w-full flex justify-center flex-col items-center mx-auto rounded-b-[50px] bg-[#09578C]">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center text-yellow-400 mb-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-1"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 1v22m11-11H1" />
+          </svg>
+          <span class="uppercase text-4xl font-semibold">testimonials</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl mt-8 text-white font-medium mb-3 ">
+          Healthcare Heroes Speak
+        </h2>
+        <p class="max-w-2xl mx-auto text-gray-200">
+          Your experiences mean everything to us. Here's what real clinicians
+          have to say about working with UHC Staffing — from landing dream roles
+          to feeling truly supported every step of the way.
+        </p>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div id="testimonial-slider" class="w-[90%] flex overflow-scroll">
+        
+        <!-- Testimonial Item -->
+        <div class="relative p-6 min-w-96">
+          <!-- Quote Icon -->
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <!-- Name & Location -->
+          <h3 class="text-xl text-yellow-400 font-medium">Registered Nurse</h3>
+          <p class="text-gray-300 mb-4">New York, NY</p>
+          <!-- Quote Text -->
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            UHC Staffing made my job search so smooth. I felt seen, valued, and
+            supported throughout. I got placed at a great facility with flexible
+            shifts — exactly what I needed.
+          </p>
+          <!-- Star Rating -->
+          <div class="flex">
+            <!-- repeat star SVG 5 times -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy the above star SVG 4 more times -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Repeat 2 more testimonial items with different content -->  
+
+        <div class="relative p-6 min-w-96">
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-yellow-400 font-medium">
+            Physical Therapist
+          </h3>
+          <p class="text-gray-300 mb-4">Los Angeles, CA</p>
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            As a travel therapist, I’ve worked with other agencies — but UHC
+            gets it. The recruiters actually listen, and the onboarding was the
+            easiest I’ve ever experienced.
+          </p>
+          <div class="flex">
+            <!-- five stars -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy 4 more -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-yellow-400">
+  <defs>
+    <linearGradient id="half">
+      <stop offset="50%" stop-color="currentColor"/>
+      <stop offset="50%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#half)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 
+    3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 
+    1.81l-3.375 2.455a1 1 0 00-.364 
+    1.118l1.285 3.964c.3.921-.755 
+    1.688-1.539 1.118l-3.375-2.455a1 1 
+    0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 
+    1 0 00-.364-1.118L2.064 
+    9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 
+    0 00.95-.69l1.285-3.964z"/>
+</svg>
+
+          </div>
+        </div>
+
+        <div class="relative p-6 min-w-96">
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-yellow-400 font-medium">
+            Physical Therapist
+          </h3>
+          <p class="text-gray-300 mb-4">Los Angeles, CA</p>
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            As a travel therapist, I’ve worked with other agencies — but UHC
+            gets it. The recruiters actually listen, and the onboarding was the
+            easiest I’ve ever experienced.
+          </p>
+          <div class="flex">
+            <!-- five stars -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy 4 more -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="relative p-6 min-w-96">
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-yellow-400 font-medium">
+            Physical Therapist
+          </h3>
+          <p class="text-gray-300 mb-4">Los Angeles, CA</p>
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            As a travel therapist, I’ve worked with other agencies — but UHC
+            gets it. The recruiters actually listen, and the onboarding was the
+            easiest I’ve ever experienced.
+          </p>
+          <div class="flex">
+            <!-- five stars -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy 4 more -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-yellow-400">
+  <defs>
+    <linearGradient id="half">
+      <stop offset="50%" stop-color="currentColor"/>
+      <stop offset="50%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#half)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 
+    3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 
+    1.81l-3.375 2.455a1 1 0 00-.364 
+    1.118l1.285 3.964c.3.921-.755 
+    1.688-1.539 1.118l-3.375-2.455a1 1 
+    0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 
+    1 0 00-.364-1.118L2.064 
+    9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 
+    0 00.95-.69l1.285-3.964z"/>
+</svg>
+
+          </div>
+        </div>
+
+        <div class="relative p-6 min-w-96">
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-yellow-400 font-medium">
+            Physical Therapist
+          </h3>
+          <p class="text-gray-300 mb-4">Los Angeles, CA</p>
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            As a travel therapist, I’ve worked with other agencies — but UHC
+            gets it. The recruiters actually listen, and the onboarding was the
+            easiest I’ve ever experienced.
+          </p>
+          <div class="flex">
+            <!-- five stars -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy 4 more -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="relative p-6 min-w-96">
+          <div class="absolute top-6 right-6 text-yellow-400">
+            <i class="fas fa-quote-right text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-yellow-400 font-medium">
+            Physical Therapist
+          </h3>
+          <p class="text-gray-300 mb-4">Los Angeles, CA</p>
+          <p class="italic leading-relaxed mb-6 text-gray-200">
+            As a travel therapist, I’ve worked with other agencies — but UHC
+            gets it. The recruiters actually listen, and the onboarding was the
+            easiest I’ve ever experienced.
+          </p>
+          <div class="flex">
+            <!-- five stars -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <!-- copy 4 more -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.375 2.455a1 1 0 00-.364 1.118l1.285 3.964c.3.921-.755 1.688-1.539 1.118l-3.375-2.455a1 1 0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 1 0 00-.364-1.118L2.064 9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.964z"
+              />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 text-yellow-400">
+  <defs>
+    <linearGradient id="half">
+      <stop offset="50%" stop-color="currentColor"/>
+      <stop offset="50%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#half)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 
+    3.964a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 
+    1.81l-3.375 2.455a1 1 0 00-.364 
+    1.118l1.285 3.964c.3.921-.755 
+    1.688-1.539 1.118l-3.375-2.455a1 1 
+    0 00-1.176 0l-3.375 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.964a1 
+    1 0 00-.364-1.118L2.064 
+    9.39c-.783-.57-.38-1.81.588-1.81h4.162a1 1 
+    0 00.95-.69l1.285-3.964z"/>
+</svg>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Blogs -->
+    <section class="hidden py-16 px-4 max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center text-blue-600 mb-2">
+          <!-- plus icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-1"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 1v22m11-11H1" />
+          </svg>
+          <span class="uppercase text-sm font-semibold">Blog & News</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-semibold mb-3">
+          Stay Informed With The Latest News
+        </h2>
+        <p class="max-w-2xl mx-auto text-gray-600">
+          Our Blog & News section keeps you updated with the latest health tips,
+          medical breakthroughs, clinic news, and wellness advice.
+        </p>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="md:flex md:space-x-8">
+        <!-- Featured Post -->
+        <div
+          class="md:flex-2 relative overflow-hidden rounded-2xl mb-8 md:mb-0"
+        >
+          <img
+            src="static/images/home/understanding.jpg"
+            alt="Health checkups"
+            class="w-full h-auto boxshadow object-cover rounded-2xl"
+          />
+          <!-- dark gradient overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-2xl"
+          ></div>
+          <!-- meta + title + button -->
+          <div class="absolute bottom-6 left-6 text-white max-w-xs">
+            <p class="text-xs uppercase tracking-wider mb-1">
+              January 15, 2025 · 0 Comments · News
+            </p>
+            <h3 class="text-2xl font-semibold leading-tight mb-4">
+              Understanding The Importance Of Regular Health Checkups
+            </h3>
+            <a
+              href="#"
+              class="inline-block bg-orange-400 hover:bg-orange-500 text-white text-sm font-medium px-4 py-2 rounded-full"
+            >
+              Read More
+            </a>
+          </div>
+        </div>
+
+        <!-- Side Posts -->
+        <div class="md:flex-1 hidden md:block flex flex-col space-y-6">
+          <!-- Post #1 -->
+          <article class="flex bg-white rounded-2xl shadow overflow-hidden">
+            <img
+              src="static/images/home/add2.jpg"
+              alt="Emergency care"
+              class="w-1/3 object-cover"
+            />
+            <div class="p-4 flex-1">
+              <h4 class="font-semibold text-gray-900 mb-1">
+                New Advances in Emergency Care: What You Need to Know
+              </h4>
+              <p class="text-xs text-gray-500">Tuesday — January 24, 2025</p>
+            </div>
+          </article>
+          <!-- Post #2 -->
+          <article class="flex bg-white rounded-2xl shadow overflow-hidden">
+            <img
+              src="static/images/home/add1.jpg"
+              alt="Doctor on phone"
+              class="w-1/3 object-cover"
+            />
+            <div class="p-4 flex-1">
+              <h4 class="font-semibold text-gray-900 mb-1">
+                New Advances in Emergency Care: What You Need to Know
+              </h4>
+              <p class="text-xs text-gray-500">Tuesday — January 24, 2025</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    {% include "footer.html" %}
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      let current = 0;
+
+      function showSlide(idx) {
+        slides.forEach((s, i) => {
+          s.style.opacity = i === idx ? "1" : "0";
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle("bg-blue-700", i === idx);
+          d.classList.toggle("bg-gray-300", i !== idx);
+        });
+        current = idx;
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => showSlide(+dot.dataset.index));
+      });
+
+      // initialize
+      showSlide(0);
+
+      
+      const sliderContainer = document.querySelector("#carousel"); // Add this to your HTML
+
+      // autoplay function
+      function startAutoplay() {
+        intervalId = setInterval(() => {
+          const next = (current + 1) % slides.length;
+          showSlide(next);
+        }, 5000);
+      }
+
+      function stopAutoplay() {
+        clearInterval(intervalId);
+      }
+
+      // Start autoplay
+      startAutoplay();
+
+      // Pause on hover
+      sliderContainer.addEventListener("mouseenter", stopAutoplay);
+      sliderContainer.addEventListener("mouseleave", startAutoplay);
+    </script>
+    <script>
+      const scrollAmount = 300;
+
+      function leftScroll() {
+        const container1 = document.getElementById("cardContainer");
+        container1.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      }
+
+      function scrollRight() {
+        const container = document.getElementById("cardContainer");
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>

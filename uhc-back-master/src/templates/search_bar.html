@@ -1,0 +1,45 @@
+      <!-- Search Bar -->
+      <div
+        class="bg-white mb-12 px-6 py-4 z-20 rounded-2xl flex w-full md:max-w-6xl max-w-4xl shadow-md items-center space-x-4
+        text-black"
+      >
+      <form action="/jobs" method="get" class="w-full gap-3 items-center flex-col md:flex-row flex space-x-4">
+        <!-- Keyword Input -->
+        <div class="flex items-center bg-gray-100 px-4 py-3 rounded-xl flex-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-500 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="text"
+            name="keywords"
+            placeholder="Job Title, Keywords, Speciality"
+            class="bg-transparent focus:outline-none w-full"
+          />
+        </div>
+        <!-- Location Input -->
+        <div class="flex items-center bg-gray-100 px-4 py-3 rounded-xl flex-1 text-black">
+          <input
+            type="text"
+            placeholder="Location"
+            name="location"
+            class="bg-transparent focus:outline-none w-full"
+          />
+        </div>
+        <!-- Search Button -->
+        <button
+          class="bg-[#0D5C91] text-white px-6 py-3 rounded-xl font-medium"
+        >
+          Search
+        </button>
+      </form>
+      </div>
+    </section>

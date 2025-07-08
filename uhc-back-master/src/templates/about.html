@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" class="w-min md:w-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body class="bg-gray-50 w-full flex flex-col items-center">
+    {% include "nav.html" %}
+
+    <!-- Hero Section -->
+    <section
+      class="grad relative flex flex-col items-center justify-between h-[32rem] w-[90%] text-white rounded-[2rem] px-10 pb-10 mt-4 mx-6"
+    >
+      <div class="w-full">
+        <div class="flex flex-col w-full items-center text-center relative">
+          <!-- Title -->
+          <div class="flex flex-col items-center w-full">
+            <h1 class="md:text-[12rem] leading-[12rem] mb-24 text-[2rem] w-3/4 font-extrabold">
+              About Us
+            </h1>
+            <div
+              class="md:text-[5rem] gap-32 text-[2rem] w-1/3 md:w-2/5 font-extrabold flex justify-between"
+            >
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Image -->
+      <div class="absolute bottom-0">
+        <img
+          src="static/images/about/abt-slider.png"
+          alt="Doctor"
+          class="h-[15rem] md:h-[24rem] w-auto object-cover rounded-lg"
+        />
+      </div>
+
+      <!-- Glassmorph Text Panel -->
+      <div class="relative z-10 px-4 md:px-0">
+        <div class="mx-auto max-w-3xl relative">
+          <!-- Frosted glass base -->
+          <div
+            class="absolute inset-0 rounded-lg backdrop-blur-lg"
+          ></div>
+          <!-- Gradient fade overlay -->
+          <div
+            class="absolute inset-0 rounded-lg bg-gradient-to-r from-black/0 via-black/30 to-black/0"
+          ></div>
+          <!-- Actual text -->
+          <p
+            class="relative p-6 text-center text-base md:text-lg font-medium leading-relaxed"
+          >
+For 22+ years, we have served as a go-to partner for hospitals, nursing homes, schools, government institutions, labs, and more — delivering credentialed, ready-to-work healthcare professionals in timeframes that actually match today’s pressures.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 px-4 md:px-8 lg:px-16">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Our Story -->
+        <div
+          class="relative text-[#B40471] overflow-hidden bg-gradient-to-br from-teal-100 to-white rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg p-8"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-[#0D5C91]">Our Story <br /> <span class="text-[#B40471] italic mt-2 shadow-lg backdrop-blur-lg text-[1.5rem]"> Born from Compassion. Built for the Future. </span></h3>
+          <p class="leading-loose tracking-wide text-sm">
+            United Health Care Staffing didn’t start in a boardroom. It began in a small San Jose home office in 2004, with one simple, radical belief:
+            <br/><br/>
+            Healthcare staffing should care as much as healthcare itself. From placing our first nurse in a local senior home to now filling thousands of critical roles across hospitals, schools, behavioral centers, and home health programs, our mission has never wavered. Over the past two decades, we’ve connected more than 18,000 professionals to opportunities where they could make a real impact.
+            What drives us forward?
+            <br/><br/>
+            A perfect fusion of heart and tech. Our clinicians are Joint Commission-aligned, EMR-ready, and meticulously vetted — but beyond that, they’re compassionate humans prepared to step into the gap and deliver continuity of care where it matters most.
+          </p>
+        </div>
+
+        <!-- Image 1 -->
+        <div class="overflow-hidden rounded-bl-[5rem] rounded-xl shadow-lg">
+          <img
+            src="static/images/about/about-1.jpg"
+            alt="Team meeting"
+            class="h-full w-auto object-cover"
+          />
+        </div>
+
+        <!-- Image 2 (now naturally left on md+) -->
+        <div class="overflow-hidden rounded-tr-[5rem] rounded-xl shadow-lg">
+          <img
+            src="static/images/about/about-2.jpg"
+            alt="Group of professionals"
+            class="w-full h-auto object-cover"
+          />
+        </div>
+
+        <!-- Our Mission (naturally right on md+) -->
+        <div
+          class="relative overflow-hidden bg-gradient-to-br from-purple-100 to-white rounded-br-[5rem] rounded-tr-[5rem] shadow-lg p-8"
+        >
+          <h3 class="text-2xl font-semibold text-[#0D5C91] mb-4">
+            Our Mission <br /> <span class="italic shadow-lg text-[#720AC8]"> To Close Care Gaps with People Who Care. </span>
+          </h3>
+          <p class="text-[#720AC8] text-sm leading-relaxed">
+            At UHC Staffing, we believe every patient deserves a provider who shows up prepared, not just with credentials, but with compassion. That’s why our mission is more than staffing shifts; it’s about strengthening care settings with professionals who bring skill, soul, and purpose.<br/><br/> We use cutting-edge, AI-powered tools to streamline matches — but it’s our team’s intuition, empathy, and urgency that ensures each placement is right, not just fast. <br/><br/>Whether it’s a last-minute opening or a long-term assignment, we act swiftly, always with an eye on what improves outcomes for the people at the heart of it all.
+          </p>
+        </div>
+
+        <!-- Our Values -->
+        <div
+          class="relative overflow-hidden bg-gradient-to-br from-pink-100 to-white rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg p-8 md:col-span-2 lg:col-span-1"
+        >
+          <h3 class="text-2xl font-semibold text-[#0D5C91] mb-4">
+            Our Values <br/> <span class="text-[#B40471] italic shadow-lg">Compassion First. Innovation Always.</span>
+          </h3>
+          <p class="text-[#B40471] text-sm leading-relaxed">
+            We’re proud of our tech — AI screening, avatar job posts, predictive scheduling, and more — but none of it replaces what matters most: people. Every system we design, every tool we use, is crafted to enhance human connection, not replace it. <br/><br/>Because behind every requisition is a caregiver, a family, and a life waiting to be improved. <br/><br/>At UHC Staffing, we lead with compassion, powered by intelligent systems, and guided by a single promise: Every placement we make should elevate care, not just fill a role.
+          </p>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="overflow-hidden rounded-xl rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg">
+          <img
+            src="static/images/about/about-3.jpg"
+            alt="Counseling session"
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+    </section>
+
+
+    <section class="px-4 py-12 mx-auto max-w-6xl">
+  <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+    
+    <!-- Image Section -->
+    <div class="w-full lg:w-1/2 flex justify-center lg:justify-start">
+      <img src="static/images/about/join-commission.png" alt="Joint Commission Seal" class="h-64 md:h-96 w-auto" />
+    </div>
+    
+    <!-- Text Content -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left">
+      <h2 class="text-2xl md:text-3xl font-bold text-green-900 mb-4">Joint Commission</h2>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+        As part of our unwavering commitment to quality, United Healthcare Staffing adheres to the highest standards of compliance and internal control.
+        Our continuous improvement goals are aligned with national benchmarks, and we work diligently to meet The Joint Commission’s standards.
+        This dedication ensures that our recruitment framework not only delivers results but does so with accountability, safety, and trust at its core.
+      </p>
+
+      <!-- Button -->
+      <a href="#" class="inline-flex items-center px-6 py-3 bg-green-800 text-white font-semibold rounded-full hover:bg-green-900 transition">
+        Learn More
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+    <div class="w-full flex items-center justify-center">
+      <!-- About Us -->
+      <section
+        class="relative my-16 py-12 border border-1 border-gray-300 grad-light rounded-[5rem] shadow-lg px-4 md:px-8 lg:px-16 mx-auto
+        max-w-7xl w-full overflow-hidden"
+      >
+        <!-- Slides wrapper -->
+        <div
+          id="carousel"
+          class="relative h-[35rem] md:h-[25rem] mx-auto max-w-5xl"
+        >
+          <!-- Slide 1 -->
+          <div
+            class="slide absolute inset-0 flex flex-row-reverse items-center opacity-100 transition-opacity duration-500"
+          >
+            <!-- Image -->
+            <div class="w-1/3 flex items-center justify-center">
+              <img
+                src="static/images/about/Sammy.png"
+                alt="Team"
+                class="w-96 h-96 object-cover shadow-lg rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <!-- Text -->
+            <div class="w-2/3 px-8">
+              <p class="text-4xl mb-8 text-[#0D5C91] mb-2 font-bold">Leadership Team</p>
+              <h3 class="text-2xl md:text-3xl font-bold shadow-lg text-gray-800 mb-4">
+                Sammy Sheth — CEO
+              </h3>
+              <p class="text-gray-700 mb-6">                
+Sammy Sheth brings 20+ years of visionary leadership in healthcare staffing, backed by an MBA and deep Joint Commission-aligned operational excellence. <br/><br/> As CEO, he reimagined United Healthcare Staffing into a purpose-driven force—where every clinician is valued, every placement is thoughtful, and every recruiter is accountable. <br/><br/>Known for blending empathy with execution, Sammy champions long-term retention, compliance, and tech-forward innovation. His leadership is rooted in a mission to humanize healthcare staffing—building trust, scaling compassion, and driving meaningful change across the industry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div
+            class="slide absolute inset-0 flex flex-row-reverse items-center opacity-0 transition-opacity duration-500"
+          >
+            <div class="w-1/3">
+              <img
+                src="static/images/about/Bridget.png"
+                alt="Our Team"
+                class="w-96 h-96 object-cover shadow-lg rounded-bl-3xl rounded-tr-3xl"
+              />
+            </div>
+            <div class="w-2/3 px-8">
+              <p class="text-[#0D5C91] mb-8 text-4xl font-bold">Leadership Team</p>
+              <h3 class="text-2xl md:text-3xl font-bold shadow-lg text-gray-900 mb-4">
+                Bridget Reyes - Director, HR & Payroll
+              </h3>
+              <p class="text-gray-700 mb-6">
+                Since 2013, Bridget Reyes has been the heart behind the scenes at United Health Care Staffing, shaping a workplace where care begins with the people who deliver it.<br/><br/> As Director of Human Resources and Payroll, she orchestrates seamless onboarding, ensures timely and accurate payroll, and builds systems that make healthcare professionals feel valued, supported, and ready to thrive.<br/><br/>
+                Bridget brings more than structure—she brings soul. Whether she's refining HR strategies or hula dancing with her family, her signature blend of warmth, precision, and creativity touches everything she does.
+              </p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div
+            class="slide absolute inset-0 flex flex-row-reverse items-center opacity-0 transition-opacity duration-500"
+          >
+            <div class="w-1/3">
+              <img
+                src="static/images/about/Jessica.png"
+                alt="Jessica Gentzler"
+                class="w-96 h-96 object-cover shadow-lg rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <div class="w-2/3 px-8">
+              <p class="text-[#0D5C91] mb-8 text-4xl font-bold">Leadership Team</p>
+              <h3 class="text-2xl md:text-3xl font-bold shadow-lg text-gray-900 mb-4">
+                Jessica Gentzler – Director, BD / Staffing
+              </h3>
+              <p class="text-gray-700 mb-6">
+                With nearly 15 years in healthcare, Jessica Gentzler blends passion and precision in every connection. Since joining UHCS in 2018, she has played a key role in expanding our presence across government institutions, MSPs, and direct clients nationwide.<br/><br/>
+                Jessica began her career at Wesley Medical Center in Wichita, KS, where she gained firsthand insight into hospital operations and compassionate care. Raised in a family of healthcare professionals, she naturally merged clinical understanding with a sharp eye for client engagement.<br/><br/>
+                At UHC, she rose from scheduling to leading business development, turning conversations into connections and leads into loyal partnerships. Jessica doesn’t just build pipelines; she builds trust, delivering not just results, but relationships that last.<br/><br/>
+              </p>
+            </div>
+          </div>
+
+        <!-- Slide 3 -->
+          <div
+            class="slide absolute inset-0 flex flex-row-reverse items-center opacity-0 transition-opacity duration-500"
+          >
+            <div class="w-1/3">
+              <img
+                src="static/images/about/vaz.png"
+                alt="Jessica Gentzler"
+                class="w-96 h-96 object-cover shadow-lg rounded-tr-3xl rounded-bl-3xl"
+              />
+            </div>
+            <div class="w-2/3 px-8">
+              <p class="text-[#0D5C91] mb-8 text-4xl font-bold">Leadership Team</p>
+              <h3 class="text-2xl md:text-3xl font-bold shadow-lg text-gray-900 mb-4">
+                Gil Vaz — CFO
+              </h3>
+              <p class="text-gray-700 mb-6">
+                With over 18+ years of experience in finance including leadership roles and an MBA in Finance, Gilbert A Vaz has spent the last 5+ transformative years as CFO of United Health Care Staffing, shaping the fiscal foundation behind our growth.<br/><br/>
+                 A trusted advisor and steady hand, Gilbert leads with clarity — guiding accounting, cash flow, forecasting, and internal controls with precision and purpose. 
+                 Gilbert doesn’t just manage numbers; he creates frameworks for scale. Under his leadership, UHC has implemented smart, scalable systems that fuel expansion while ensuring compliance and financial integrity. Known for his analytical mindset and practical approach, he brings structure to ambition — turning data into insight, and insight into confident decision-making.<br/><br/>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="mt-16 flex justify-center space-x-4">
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="0"
+          ></button>
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="1"
+          ></button>
+          <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="2"
+          ></button>
+                    <button
+            class="dot w-3 h-3 bg-gray-300 rounded-full"
+            data-index="3"
+          ></button>
+        </div>
+      </section>
+    </div>
+
+    {% include "timeline.html" %}
+
+    <!-- WHY CHOOSE US -->
+    <section class="pb-16 px-4 md:px-8 lg:px-16 relative">
+      <div class="text-center mb-12">
+        <p class="text-4xl font-bold text-[#0D5C91]">Why Choose Us?</p>
+        <h2 class="mt-8 text-2xl md:text-3xl font-medium text-gray-900">
+          <span class="shadow-2xl tracking-light bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">Empowered by Technology</span> — Driven by the 4 C’s
+        </h2>
+        <div class="w-full flex items-center justify-center">
+          <p class="mt-4 text-md w-3/4 text-gray-600">
+            At United Health Care Staffing, we don’t just keep up with innovation — we build with it. <br/>
+  Our next-generation tech stack brings you closer to seamless staffing than ever before. With fully integrated Generative AI, including chatbots, AI-powered avatar, voice agents, and AI-powered interviewers, we’ve set a new standard in healthcare staffing — one no other firm has yet matched across all levels of the application experience. This isn't just digital transformation — it’s digital leadership.<br/><br/>
+  From automating the first hello to streamlining final onboarding, our technology enhances every touchpoint, without losing the personal touch. It’s smart, responsive, and built to serve both sides of the equation: clients and candidates.<br/>
+  
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards Grid (centered, 2‑col from sm up) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 place-items-center">
+        <!-- Each card: max width + aspect ratio + reduced padding -->
+        <div
+          class="w-xs h-[17rem] bg-gradient-to-b from-[#C38500]/20 to-[#C38500]/1 rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="text-5xl p-3 rounded-full mb-3">
+            <!-- Icon -->
+            🧭
+          </div>
+          <h3 class="text-2xl mb-4 font-semibold text-yellow-700">
+            Customer-Oriented
+          </h3>
+          <p class="text-md text-gray-700 text-yellow-700 leading-relaxed">
+            Your facility is unique, and our platform knows it. Whether you’re a rural clinic,  or government agency, our system adjusts to your pace, acuity levels, shift demands, and scheduling realities to deliver the right match at the right time.
+          </p>
+        </div>
+
+        <div
+        class="w-xs h-[17rem] bg-gradient-to-b from-[#007CD5]/20 to-[#007CD5]/1 rounded-tl-[5rem] rounded-br-[5rem] shadow-lg p-6 flex flex-col items-center text-center"
+        >
+        <div class="text-5xl rounded-full mb-8">
+            💙 
+          </div>
+          <h3 class="text-2xl mb-4 font-semibold text-sky-700">
+            Compassionate
+          </h3>
+          <p class="text-md text-sky-700 leading-relaxed">
+            We move fast, but we never forget who we’re serving. Behind the automation is a team guided by empathy, supported by tools that let us respond quicker, listen better, and support every professional like they’re the only one that matters.
+          </p>
+        </div>
+
+        <div
+          class="w-xs h-[17rem] bg-gradient-to-b from-[#00812C]/20 to-[#00812C]/1 rounded-tl-[5rem] rounded-br-[5rem] shadow-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="text-5xl rounded-full mb-3">
+            🔍
+          </div>
+          <h3 class="text-2xl mb-4 font-semibold text-green-700 mb-1">
+            Candid
+          </h3>
+          <p class="text-md text-green-700 leading-relaxed">
+            Real-time transparency is built in. From credential tracking to licensure notifications and chat logs, every piece of information is right where you need it. No blackout zones, no broken handoffs — just radical clarity, start to finish.
+          </p>
+        </div>
+
+        <div
+          class="w-xs h-[17rem] bg-gradient-to-b from-[#C30078]/20 to-[#C30078]/1 rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="text-5xl rounded-full mb-3">
+          ✅
+          </div>
+          <h3 class="text-2xl mb-4 font-semibold text-pink-700 mb-1">
+            Compliant
+          </h3>
+          <p class="text-md text-pink-700 leading-relaxed">
+From AI-backed license checks to audit-proof digital records, compliance isn’t an afterthought — it’s coded into our core. We proudly uphold Joint Commission standards and help you do the same without the paperwork headache.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordions -->
+    {% include "faq.html" %}
+
+    {% include "footer.html" %}
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      let current = 0;
+
+      function showSlide(idx) {
+        slides.forEach((s, i) => {
+          s.style.opacity = i === idx ? "1" : "0";
+        });
+        dots.forEach((d, i) => {
+          d.classList.toggle("bg-blue-700", i === idx);
+          d.classList.toggle("bg-gray-300", i !== idx);
+        });
+        current = idx;
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => showSlide(+dot.dataset.index));
+      });
+
+      // initialize
+      showSlide(0);
+
+      const sliderContainer = document.querySelector("#carousel"); // Add this to your HTML
+
+      // autoplay function
+      function startAutoplay() {
+        intervalId = setInterval(() => {
+          const next = (current + 1) % slides.length;
+          showSlide(next);
+        }, 5000);
+      }
+
+      function stopAutoplay() {
+        clearInterval(intervalId);
+      }
+
+      // Start autoplay
+      startAutoplay();
+
+      // Pause on hover
+      sliderContainer.addEventListener("mouseenter", stopAutoplay);
+      sliderContainer.addEventListener("mouseleave", startAutoplay);
+    </script>
+
+    <script>
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const btn = item.querySelector(".faq-toggle");
+        const content = item.querySelector(".faq-content");
+        const icon = btn.querySelector("svg");
+
+        btn.addEventListener("click", () => {
+          // Toggle open class
+          const isOpen =
+            content.style.maxHeight && content.style.maxHeight !== "0px";
+          if (isOpen) {
+            content.style.maxHeight = "0";
+            icon.classList.remove("rotate-90");
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.classList.add("rotate-90");
+          }
+        });
+      });
+    </script>
+</body>
+</html>

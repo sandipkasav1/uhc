@@ -1,0 +1,44 @@
+<div class="mb-32"></div>
+<nav class="bg-white w-[100vw] fixed top-0 z-[100] shadow py-3">
+  <div class="container mx-auto px-4 my-2 flex items-center justify-between">
+    <!-- Brand -->
+    <a href="/" class="flex items-center">
+      <img src="/static/images/logo.png" alt="Logo" class="h-16 w-auto object-contain" />
+      <span class="ml-2 font-bold text-white text-lg">UHC</span>
+    </a>
+    <!-- Menu -->
+     <div class="flex flex-row gap-8 items-center space-x-4">
+
+    <div id="nav-menu" class="hidden lg:flex items-center space-x-6">
+      <ul class="flex flex-col lg:flex-row lg:space-x-6 space-y-2 lg:space-y-0">
+        <li><a href="/" class="text-gray-700 hover:text-blue-600">Home</a></li>
+        <li><a href="/about" class="text-gray-700 hover:text-blue-600">About Us</a></li>
+        <li><a href="/jobs" class="text-gray-700 hover:text-blue-600">Jobs</a></li>
+        <li><a href="/client" class="text-gray-700 hover:text-blue-600">Clients</a></li>
+        <li><a href="/contact" class="text-gray-700 hover:text-blue-600">Contact Us</a></li>
+      </ul>
+    </div>
+  
+    <a id="chat-btn" href="#" class="ml-0 lg:ml-4 inline-block bg-[#0D5C91] text-white rounded-full px-5 py-2 hover:bg-blue-700">
+      Chat With Us
+    </a>
+     </div>
+
+    <!-- Mobile toggle -->
+    <button id="nav-toggler" class="lg:hidden focus:outline-none">
+      <svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+  </div>
+</nav>
+
+<script>
+  // Simple mobile menu toggle
+  document.getElementById('nav-toggler').addEventListener('click', () => {
+    document.getElementById('nav-menu').classList.toggle('hidden');
+    document.getElementById('chat-btn').classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .faq-item:nth-child(odd) .faq-toggle {
+            background: linear-gradient(to right, #f0f4ff, #e0e7ff);
+        }
+        .faq-item:nth-child(even) .faq-toggle {
+            background: linear-gradient(to right, #fff0f6, #ffe4f9);
+        }
+        .faq-toggle:hover {
+            background: linear-gradient(to right, #e0e7ff, #c7d2ff);
+        }
+    </style>
+</head>
+<body>
+
+    {% include "nav.html" %}
+
+    {% include "faq.html" %}
+
+</body>
+</html>
