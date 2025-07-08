@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Urbanist';
+    src: url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist&display=swap');
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Remove default body margin */
+    font-family: 'Urbanist', sans-serif;
+}
+
+.glassmorph {
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.boxshadow {
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+.grad-light {
+background: radial-gradient(#dbeafe 0%, #F9FAFB);
+}
+
+.grad {
+  background: radial-gradient(#2b86c2, #0D5C91);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+    .animate-fade-in-down {
+      animation: fadeInDown 0.3s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
